@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:Util="http://schemas.microsoft.com/wix/UtilExtension">
+
+  <?include Variables.wxi?>
+
+  <Fragment>
+
+
+    <ComponentGroup Id="ServiceComponent">
+      <ComponentRef Id="ChatMessengersServiceInstaller"/>
+    </ComponentGroup>
+
+    <!--Файлы службы-->
+    <DirectoryRef Id ="INSTALLLOCATION" FileSource="..\Service\">
+
+      <Component Id="ChatMessengersServiceInstaller" Guid="b11556a2-e066-4393-af5c-9c9210187e74">
+        <File Id='ChatMessengersService.exe' Name='ChatMessengersService.exe' DiskId='1' Vital="yes" KeyPath="yes"/>
+        <File Id='ChatMessengers.Umnico.dll' Name='ChatMessengers.Umnico.dll' DiskId='1' Vital="yes"/>
+        <File Id='ClinicChatAggregatorCommon.dll' Name='ClinicChatAggregatorCommon.dll' DiskId='1' Vital="yes"/>
+        <File Id='ChatMessengersService.exe.config' Name='ChatMessengersService.exe.config' DiskId='1' Vital="yes"/>
+        <File Id='Newtonsoft.Json.dll2' Name='Newtonsoft.Json.dll' DiskId='1' Vital="yes"/>
+        <File Id='Globaloptions' Name='Globaloptions.txt' DiskId='1' Vital="yes"/>
+        <File Id='Localoptions' Name='Localoptions.txt' DiskId='1' Vital="yes"/>
+        <File Id='BulkMessagesWebServer.dll' Name='BulkMessagesWebServer.dll' DiskId='1' Vital="yes"/>
+        <File Id='EntityFramework.dll' Name='EntityFramework.dll' DiskId='1' Vital="yes"/>
+        <File Id='IpMatcher.dll' Name='IpMatcher.dll' DiskId='1' Vital="yes"/>
+        <File Id='Microsoft.Bcl.AsyncInterfaces.dll' Name='Microsoft.Bcl.AsyncInterfaces.dll' DiskId='1' Vital="yes"/>
+        <File Id='RegexMatcher.dll' Name='RegexMatcher.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Buffers.dll' Name='System.Buffers.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Memory.dll' Name='System.Memory.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Numerics.Vectors.dll' Name='System.Numerics.Vectors.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Runtime.CompilerServices.Unsafe.dll' Name='System.Runtime.CompilerServices.Unsafe.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Text.Encodings.Web.dll' Name='System.Text.Encodings.Web.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Text.Json.dll' Name='System.Text.Json.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.Threading.Tasks.Extensions.dll' Name='System.Threading.Tasks.Extensions.dll' DiskId='1' Vital="yes"/>
+        <File Id='System.ValueTuple.dll' Name='System.ValueTuple.dll' DiskId='1' Vital="yes"/>
+        <File Id='Timestamps.dll' Name='Timestamps.dll' DiskId='1' Vital="yes"/>
+        <File Id='UrlMatcher.dll' Name='UrlMatcher.dll' DiskId='1' Vital="yes"/>
+        <File Id='WatsonWebserver.dll' Name='WatsonWebserver.dll' DiskId='1' Vital="yes"/>
+        <File Id='BulkMessagesWebServer.dll.config' Name='BulkMessagesWebServer.dll.config' DiskId='1' Vital="yes"/>
+        <File Id='WatsonWebserver.xml' Name='WatsonWebserver.xml' DiskId='1' Vital="yes"/>
+        <File Id='UrlMatcher.xml' Name='UrlMatcher.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.ValueTuple.xml' Name='System.ValueTuple.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Threading.Tasks.Extensions.xml' Name='System.Threading.Tasks.Extensions.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Text.Json.xml' Name='System.Text.Json.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Text.Encodings.Web.xml' Name='System.Text.Encodings.Web.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Runtime.CompilerServices.Unsafe.xml' Name='System.Runtime.CompilerServices.Unsafe.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Numerics.Vectors.xml' Name='System.Numerics.Vectors.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Memory.xml' Name='System.Memory.xml' DiskId='1' Vital="yes"/>
+        <File Id='System.Buffers.xml' Name='System.Buffers.xml' DiskId='1' Vital="yes"/>
+        <File Id='Microsoft.Bcl.AsyncInterfaces.xml' Name='Microsoft.Bcl.AsyncInterfaces.xml' DiskId='1' Vital="yes"/>
+        <File Id='EntityFramework.xml' Name='EntityFramework.xml' DiskId='1' Vital="yes"/>
+        <ServiceInstall
+          Id="ServiceInstall"
+          Type="ownProcess"
+          Vital="yes"
+          Name="ChatMessengersService"
+          DisplayName="СиМед. Чат агрегатор"
+          Description="ООО Симплекс"
+          Start="auto"
+          ErrorControl="normal">
+        </ServiceInstall>
+
+        <ServiceControl Id="StopService" Name="ChatMessengersService" Stop="both" Wait="yes" Remove="uninstall" />
+
+      </Component>
+    </DirectoryRef>
+    <!--Файлы службы-->
+
+  </Fragment>
+</Wix>

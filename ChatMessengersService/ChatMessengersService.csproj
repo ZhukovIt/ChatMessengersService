@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B8C1F95-A0AA-4383-B82A-B45CE7545367}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ChatMessengersService</RootNamespace>
+    <AssemblyName>ChatMessengersService</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChatMessengers.Umnico, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ChatMessengers.Umnico\bin\Debug\ChatMessengers.Umnico.dll</HintPath>
+    </Reference>
+    <Reference Include="ClinicChatAggregatorCommon, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ClinicChatAggregatorCommon\bin\Debug\ClinicChatAggregatorCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Components\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dtsChatMessenger.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtsChatMessenger.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\SiMedDBExtensions.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\CachedSendingFirstMessage.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\DeciderCreateDBObjects.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\ImagesPersister.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\MassMessagesCreatorObjects.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\MassMessagesUmnicoSenderService.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\AbstractSenderHandler.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\ExistsMessengerSenderHandler.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\MessengerSendAction.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\PriorityTelegramSenderHandler.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\PriorityVkontakteSenderHandler.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\PriorityWhatsAppSenderHandler.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SenderHandlers\TelegramFirstSenderHandler.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SendingFirstMessagesCache.cs" />
+    <Compile Include="MassMessagesUmnicoSenders\SendMessagePersister.cs" />
+    <Compile Include="ObjectFactory\ChatAggregators.cs" />
+    <Compile Include="FillSiMedDB\MainFillerSiMedDB.cs" />
+    <Compile Include="FillSiMedDB\DBLogger.cs" />
+    <Compile Include="FillSiMedDB\AbstractFillerSiMedDB.cs" />
+    <Compile Include="FillSiMedDB\MessengerDialogFillerSiMedDB.cs" />
+    <Compile Include="FillSiMedDB\MessengerDialogMessageAttachmentFillerSiMedDB.cs" />
+    <Compile Include="FillSiMedDB\MessengerDialogMessageFillerSiMedDB.cs" />
+    <Compile Include="ObjectFactory\MassMessagesRepositories.cs" />
+    <Compile Include="ObjectFactory\MotherObject.cs" />
+    <Compile Include="FillSiMedDB\PersonMessengerTypesFillerSiMedDB.cs" />
+    <Compile Include="FillSiMedDB\SourceTypeFillerSiMedDB.cs" />
+    <Compile Include="InstallerService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InstallerService.Designer.cs">
+      <DependentUpon>InstallerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainService.Designer.cs">
+      <DependentUpon>MainService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SetterOptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsChatMessenger.xsc">
+      <DependentUpon>dtsChatMessenger.xsd</DependentUpon>
+    </None>
+    <None Include="dtsChatMessenger.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtsChatMessenger.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dtsChatMessenger.xss">
+      <DependentUpon>dtsChatMessenger.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BulkMessagesWebSender\BulkMessagesWebServer.csproj">
+      <Project>{3d29bc02-95f8-41d9-ae7e-d797195a9e40}</Project>
+      <Name>BulkMessagesWebServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

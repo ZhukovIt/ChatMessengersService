@@ -1,0 +1,20 @@
+
+Ссылка, как упаковать содержимое вида: 
+{
+    "source": "255",
+    "media": ФАЙЛ
+}
+
+https://social.msdn.microsoft.com/Forums/en-US/6b62825e-e983-4491-80b0-0b0db0d8fec5/how-to-post-data-using-c-httpwebrequest-class?forum=csharplanguage
+
+//////////////////////////////////////////////////// как это видит Fiddler, так же и нам надо свормировать данные для отправки
+----------------------------747916212194613942526400
+Content-Disposition: form-data; name="source"
+
+33578514
+----------------------------747916212194613942526400
+Content-Disposition: form-data; name="media"; filename="Снимок.PNG"; filename*=UTF-8''%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA.PNG
+Content-Type: image/png
+
+�PNG
+

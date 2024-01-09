@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include Variables.wxi?>
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="ServiceComponentFolderRemoveFolder"
+                 Guid="{ECAFD228-38C9-47AE-88AD-F7A1E321FE9B}">
+        <RemoveFolder Id="INSTALLLOCATION" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\$(var.ManufacturerCode)\$(var.ProductNameCode)" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+	</Fragment>
+</Wix>

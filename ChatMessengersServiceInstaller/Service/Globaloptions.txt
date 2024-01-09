@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<CMUmnicoGlobalOptions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LOGIN>test@mail.ru</LOGIN>
+  <PASSWORD>123parol</PASSWORD>
+  <MAIN_URL>https://api.umnico.com/v1.3</MAIN_URL>
+</CMUmnicoGlobalOptions>

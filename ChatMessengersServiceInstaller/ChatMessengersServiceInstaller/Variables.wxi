@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define ProductName="СиМед - Чат агрегатор" ?>
+  <?define ProductVersion="1.0.6.0" ?> <!-- поднять-->
+  <?define ProductCode="0c8a2c8f-e8d9-4072-9d22-6681f984cd99"?><!-- изменить-->
+  <?define UpgradeCode="ad865f99-1111-4a3d-be8a-d719e76a1026"?>
+  <?define Manufacturer="Симплекс"?>
+  <?define ManufacturerCode="Simplex" ?>
+  <?define ProductNameCode="Chat Messengers Service" ?>
+  <?define MsiPackageName="ChatMessengersServiceInstaller.msi" ?>
+</Include>

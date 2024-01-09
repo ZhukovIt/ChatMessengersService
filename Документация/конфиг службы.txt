@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings> //БАЗА КЛИНИКИ
+        <add name="ChatMessengersService.Properties.Settings.dtsChatMessenger"
+            connectionString="Data Source=SM-SERV01\SQL10_5_SIMPLEX;Initial Catalog=clinic10;User ID=sa;Password=Q12werty"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+    </startup>
+  <appSettings>
+    <add key="HomeWebHook" value="http://test.simplex48.ru:81/HomeApi/ChatMessengersWebHooks/GetMessages" /> //АДРЕС ВЕБ-СЕРВЕРА
+    <add key="LogFolder" value="C:\Users\SM11\AppData\Roaming\Симплекс\СиМед - Клиника\" /> //ГДЕ БУДУТ ЛЕЖАТЬ ЛОГИ
+	<add key="HomeWebHookKeyGUI" value="c14bb9a7723e4463bbd612c98b4e3d7e" /> //КЛЮЧ ДЛЯ РАБОТЫ С ВЕБ-СЕРВЕРОМ (ДОЛЖЕН БЫТЬ КАК И У ВЕБ-СЛУЖБЫ)
+  </appSettings>
+</configuration>
