@@ -28,12 +28,12 @@ namespace BulkMessagesWebServer.DBObjects
 --DECLARE @MES_UMN_SEND_TEXT NVARCHAR(2000) = 'Тест';
 --DECLARE @MES_UMN_SEND_GUID CHAR(36) = '7a93e9a3-ce8b-4b4c-937f-239e33c50b2d';
 --DECLARE @MES_UMN_SEND_IMG_NAME NVARCHAR(1000) = 'Image1.jpg';
---DECLARE @BRANCH_CODE INT = 123423;
+--DECLARE @BRANCH_NAME NVARCHAR(100) = 'Simplex';
 
 INSERT INTO MES_UMNICO_SENDER(MES_UMN_SEND_STAT_TYPE_ID, MES_UMN_SEND_GUID, 
-MES_UMN_SEND_TEXT, PER_ID, MES_UMN_SEND_IMG_NAME, BRANCH_CODE)
+MES_UMN_SEND_TEXT, PER_ID, MES_UMN_SEND_IMG_NAME, BRANCH_NAME)
 VALUES
-	(1, @MES_UMN_SEND_GUID, @MES_UMN_SEND_TEXT, @PER_ID, @MES_UMN_SEND_IMG_NAME, @BRANCH_CODE);
+	(1, @MES_UMN_SEND_GUID, @MES_UMN_SEND_TEXT, @PER_ID, @MES_UMN_SEND_IMG_NAME, @BRANCH_NAME);
             ";
 
             _Command.CommandType = System.Data.CommandType.Text;
@@ -49,9 +49,9 @@ VALUES
             {
                 Value = _Guid
             });
-            _Command.Parameters.Add(new SqlParameter("BRANCH_CODE", System.Data.SqlDbType.Int)
+            _Command.Parameters.Add(new SqlParameter("BRANCH_NAME", System.Data.SqlDbType.NVarChar, 100)
             {
-                Value = _BranchName.GetHashCode()
+                Value = _BranchName
             });
             _Command.Parameters.Add(new SqlParameter("MES_UMN_SEND_IMG_NAME", System.Data.SqlDbType.NVarChar, 1000));
 
@@ -159,15 +159,15 @@ WHERE MES_LOG_EXT_ID = @MES_EXT_ID;
                     _Command.CommandText = @"
 --DECLARE @BRANCH_CODE INT = 12343423;
 
-SELECT MES_UMN_SEND_ID, MES_UMN_SEND_STAT_TYPE_ID, PER_ID, MES_UMN_SEND_GUID, MES_UMN_SEND_TEXT, BRANCH_CODE, MES_UMN_SEND_IMG_NAME
+SELECT MES_UMN_SEND_ID, MES_UMN_SEND_STAT_TYPE_ID, PER_ID, MES_UMN_SEND_GUID, MES_UMN_SEND_TEXT, BRANCH_NAME, MES_UMN_SEND_IMG_NAME
 FROM MES_UMNICO_SENDER
-WHERE BRANCH_CODE = @BRANCH_CODE AND MES_UMN_SEND_STAT_TYPE_ID = 1
+WHERE BRANCH_NAME = @BRANCH_NAME AND MES_UMN_SEND_STAT_TYPE_ID = 1
                     ";
 
                     _Command.CommandType = System.Data.CommandType.Text;
-                    _Command.Parameters.Add(new SqlParameter("BRANCH_CODE", System.Data.SqlDbType.Int)
+                    _Command.Parameters.Add(new SqlParameter("BRANCH_NAME", System.Data.SqlDbType.NVarChar, 100)
                     {
-                        Value = _BranchName.GetHashCode()
+                        Value = _BranchName
                     });
 
                     using (SqlDataReader reader = _Command.ExecuteReader())
@@ -183,7 +183,7 @@ WHERE BRANCH_CODE = @BRANCH_CODE AND MES_UMN_SEND_STAT_TYPE_ID = 1
                                     PersonId = reader.GetInt32(2),
                                     Guid = reader.GetString(3),
                                     Text = reader.GetString(4),
-                                    BranchCode = reader.GetInt32(5)
+                                    BranchName = reader.GetString(5)
                                 };
 
                                 if (!reader.IsDBNull(6))
@@ -211,13 +211,13 @@ WHERE BRANCH_CODE = @BRANCH_CODE AND MES_UMN_SEND_STAT_TYPE_ID = 1
 
 SELECT COUNT(*)
 FROM MES_UMNICO_SENDER
-WHERE BRANCH_CODE = @BRANCH_CODE AND MES_UMN_SEND_STAT_TYPE_ID = 1
+WHERE BRANCH_NAME = @BRANCH_NAME AND MES_UMN_SEND_STAT_TYPE_ID = 1
             ";
 
             _Command.CommandType = System.Data.CommandType.Text;
-            _Command.Parameters.Add(new SqlParameter("BRANCH_CODE", System.Data.SqlDbType.Int)
+            _Command.Parameters.Add(new SqlParameter("BRANCH_NAME", System.Data.SqlDbType.NVarChar, 100)
             {
-                Value = _BranchName.GetHashCode()
+                Value = _BranchName
             });
 
             object _QueryResult = Execute<int>(_Command);

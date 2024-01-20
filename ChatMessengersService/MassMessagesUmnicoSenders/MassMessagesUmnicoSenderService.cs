@@ -276,10 +276,10 @@ namespace ChatMessengersService.MassMessagesUmnicoSenders
             try
             {
                 // Устанавливаем интеграцию с телеграм, если у пациента совсем не окажется диалогов и мессенджеров
-                Tuple<int, string> _TelegramSourceTypeData = m_Repository.CreateSourceTypeData("Telegram", 1000);
+                Tuple<int, string> _TelegramSourceTypeData = m_Repository.CreateSourceTypeData("Telegram", 0);
 
                 // Устанавливаем интеграцию с WhatsApp, если у пациента совсем не окажется диалогов и мессенджеров
-                Tuple<int, string> _WhatsAppSourceTypeData = m_Repository.CreateSourceTypeData("WhatsApp", 1000);
+                Tuple<int, string> _WhatsAppSourceTypeData = m_Repository.CreateSourceTypeData("WhatsApp", 0);
 
                 // Получаем номер телефона для пациента
                 string _PersonPhoneNumber = m_Repository.GetPhoneNumberFromPersonId(_PersonId);

@@ -28,7 +28,7 @@ namespace BulkMessagesWebServer.DBObjects.MassMessages
         [Column("PER_ID")]
         public int PersonId { get; set; }
 
-        [Column("BRANCH_CODE")]
-        public int BranchCode { get; set; }
+        [Column("BRANCH_NAME")]
+        public string BranchName { get; set; }
     }
 }

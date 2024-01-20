@@ -32,7 +32,7 @@ namespace BulkMessagesWebServer.DBObjects
                     Text = _Text,
                     PersonId = _PersonId,
                     ImageName = _ImageName,
-                    BranchCode = _BranchName.GetHashCode()
+                    BranchName = _BranchName
                 };
 
                 db.Senders.Add(_NewSender);
@@ -59,11 +59,9 @@ namespace BulkMessagesWebServer.DBObjects
         {
             using (MassMessagesContext db = new MassMessagesContext(m_NameConnectionString))
             {
-                int branchCode = _BranchName.GetHashCode();
-
                 return db.Senders
                     .AsQueryable()
-                    .Where(s => s.BranchCode == branchCode && s.SenderStatusTypeId == 1)
+                    .Where(s => s.BranchName == _BranchName && s.SenderStatusTypeId == 1)
                     .ToList();
             }
         }
@@ -72,11 +70,9 @@ namespace BulkMessagesWebServer.DBObjects
         {
             using (MassMessagesContext db = new MassMessagesContext(m_NameConnectionString))
             {
-                int branchCode = _BranchName.GetHashCode();
-
                 return db.Senders
                     .AsQueryable()
-                    .Where(s => s.BranchCode == branchCode && s.SenderStatusTypeId == 1)
+                    .Where(s => s.BranchName == _BranchName && s.SenderStatusTypeId == 1)
                     .Count() > 0;
             }
         }
