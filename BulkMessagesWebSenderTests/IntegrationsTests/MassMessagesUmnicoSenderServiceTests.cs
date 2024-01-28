@@ -30,7 +30,7 @@ namespace ChatMessengersService.Tests.EndToEnd
 
             IMassMessagesRepository repository = new EntityFrameworkMassMessagesRepository("WorkDB");
 
-            MassMessagesUmnicoSenderService sut = new MassMessagesUmnicoSenderService(mock.Object, repository, "Test");
+            MassMessagesUmnicoSenderService sut = new MassMessagesUmnicoSenderService(mock.Object, repository, "Test", 1);
 
             // Действие (Act)
             sut.Start();
@@ -50,7 +50,7 @@ namespace ChatMessengersService.Tests.EndToEnd
                 (string _Message) => { },
                 Path.Combine(Application.StartupPath, "Localoptions.txt"));
 
-            MassMessagesUmnicoSenderService service = new MassMessagesUmnicoSenderService(_ChatMessenger, _Repository, "Test");
+            MassMessagesUmnicoSenderService service = new MassMessagesUmnicoSenderService(_ChatMessenger, _Repository, "Test", 1);
 
             Thread loggerThread = new Thread(() => service.Start());
             
@@ -87,7 +87,7 @@ namespace ChatMessengersService.Tests.EndToEnd
                 (string _Message) => { },
                 Path.Combine(Application.StartupPath, "Localoptions.txt"));
 
-            MassMessagesUmnicoSenderService service = new MassMessagesUmnicoSenderService(_ChatMessenger, _Repository, "Test");
+            MassMessagesUmnicoSenderService service = new MassMessagesUmnicoSenderService(_ChatMessenger, _Repository, "Test", 1);
 
             Thread loggerThread = new Thread(() => service.Start());
 

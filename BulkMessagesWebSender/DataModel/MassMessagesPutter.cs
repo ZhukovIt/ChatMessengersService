@@ -16,6 +16,7 @@ namespace BulkMessagesWebServer.DataModel
         private readonly ImagesService m_ImagesService;
         private readonly MassMessagesLogsWorker m_MassMessagesLogsWorker;
         private string m_BranchName;
+        private int m_BranchNumber;
         //-------------------------------------------------------------------------------------
         public string BranchName
         {

@@ -95,7 +95,14 @@ namespace ChatMessengersService
         {
             string _BranchName = ConfigurationManager.AppSettings["BranchName"];
 
-            return new MassMessagesUmnicoSenderService(_ChatMessenger, _Repository, _BranchName);
+            int branchNumber;
+            string branchNumberString = ConfigurationManager.AppSettings["BranchNumber"];
+            if (!int.TryParse(branchNumberString, out branchNumber))
+            {
+                throw new FormatException("В файле конфигурации значение для AppSettings -> BranchNumber не является числом типа int!");
+            }
+
+            return new MassMessagesUmnicoSenderService(_ChatMessenger, _Repository, _BranchName, branchNumber);
         }
         //------------------------------------------------------------------------------------------------------------------------
     }

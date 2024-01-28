@@ -25,6 +25,7 @@ namespace ChatMessengersService.MassMessagesUmnicoSenders
         private readonly MassMessagesLogsWorker m_MassMessagesLogsWorker;
         private Exception m_LastException;
         private string m_BranchName;
+        private int m_BranchNumber;
         //---------------------------------------------------------------
         public string BranchName
         {
@@ -32,15 +33,22 @@ namespace ChatMessengersService.MassMessagesUmnicoSenders
             set => m_BranchName = value;
         }
         //---------------------------------------------------------------
+        public int BranchNumber
+        {
+            get => m_BranchNumber;
+            set => m_BranchNumber = value;
+        }
+        //---------------------------------------------------------------
         public Exception LastException
         {
             get => m_LastException;
         }
         //---------------------------------------------------------------
-        public MassMessagesUmnicoSenderService(IMessengerCommon _ChatMessenger, IMassMessagesRepository _Repository, string _BranchName)
+        public MassMessagesUmnicoSenderService(IMessengerCommon _ChatMessenger, IMassMessagesRepository _Repository, string _BranchName, int branchNumber)
         {
             m_Repository = _Repository;
             m_BranchName = _BranchName;
+            m_BranchNumber = branchNumber;
             m_MassMessagesLogsWorker = new MassMessagesLogsWorker(Application.StartupPath);
             m_MainSenderHandler = CreateMainSenderHandler();
             m_SendMessagesPersister = new SendMessagePersister(_ChatMessenger, m_MassMessagesLogsWorker);
@@ -275,11 +283,15 @@ namespace ChatMessengersService.MassMessagesUmnicoSenders
 
             try
             {
+                int startIDToFind = 1;
+                if (m_BranchNumber == 2)
+                    startIDToFind = 1000;
+
                 // Устанавливаем интеграцию с телеграм, если у пациента совсем не окажется диалогов и мессенджеров
-                Tuple<int, string> _TelegramSourceTypeData = m_Repository.CreateSourceTypeData("Telegram", 0);
+                Tuple<int, string> _TelegramSourceTypeData = m_Repository.CreateSourceTypeData("Telegram", startIDToFind);
 
                 // Устанавливаем интеграцию с WhatsApp, если у пациента совсем не окажется диалогов и мессенджеров
-                Tuple<int, string> _WhatsAppSourceTypeData = m_Repository.CreateSourceTypeData("WhatsApp", 0);
+                Tuple<int, string> _WhatsAppSourceTypeData = m_Repository.CreateSourceTypeData("WhatsApp", startIDToFind);
 
                 // Получаем номер телефона для пациента
                 string _PersonPhoneNumber = m_Repository.GetPhoneNumberFromPersonId(_PersonId);

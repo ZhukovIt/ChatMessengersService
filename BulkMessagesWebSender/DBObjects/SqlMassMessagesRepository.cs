@@ -157,7 +157,7 @@ WHERE MES_LOG_EXT_ID = @MES_EXT_ID;
                     _Command.Connection = _Connection;
                     
                     _Command.CommandText = @"
---DECLARE @BRANCH_CODE INT = 12343423;
+--DECLARE @BRANCH_NAME NVARCHAR(100) = 'Simplex';
 
 SELECT MES_UMN_SEND_ID, MES_UMN_SEND_STAT_TYPE_ID, PER_ID, MES_UMN_SEND_GUID, MES_UMN_SEND_TEXT, BRANCH_NAME, MES_UMN_SEND_IMG_NAME
 FROM MES_UMNICO_SENDER
@@ -207,7 +207,7 @@ WHERE BRANCH_NAME = @BRANCH_NAME AND MES_UMN_SEND_STAT_TYPE_ID = 1
             SqlCommand _Command = new SqlCommand();
 
             _Command.CommandText = @"
---DECLARE @BRANCH_CODE INT = 1223412;
+--DECLARE @BRANCH_NAME NVARCHAR(100) = 'Simplex';
 
 SELECT COUNT(*)
 FROM MES_UMNICO_SENDER
