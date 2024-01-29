@@ -861,7 +861,16 @@ namespace SiMed.ChatMessengers.Umnico
                                 Message message = new Message();
                                 if (value["datetime"] != null)
                                 {
-                                    message.datetime = value["datetime"].Value<long>();
+                                    DateTime datetime;
+                                    if (DateTime.TryParse(value["datetime"].Value<object>().ToString(), out datetime))
+                                    {
+                                        message.datetime = Hepler.DateTimeToUnixTimestamp(datetime.ToLocalTime());
+                                    }
+                                    else
+                                    {
+                                        message.datetime = value["datetime"].Value<long>();
+                                    }
+                                    
                                 }
                                 message.sa = new Messenger() { id = value["sa"]["id"].Value<int>(), type = value["sa"]["type"].Value<string>(), login = value["sa"]["login"].Value<string>() };
                                 if (value["message"] != null)
@@ -890,7 +899,7 @@ namespace SiMed.ChatMessengers.Umnico
                                         }
                                         message.replyTo = new ReplyMessage()
                                         {
-                                            datetime = value["message"]["replyTo"]["datetime"].Value<int>(),
+
                                             message = new MessageItem()
                                             {
                                                 text = value["message"]["replyTo"]["message"]["text"].Value<string>(),
@@ -900,6 +909,15 @@ namespace SiMed.ChatMessengers.Umnico
                                             messageId = value["message"]["replyTo"]["messageId"].Value<string>(),
                                             incoming = value["message"]["replyTo"]["incoming"].Value<bool>()
                                         };
+                                        DateTime datetime;
+                                        if (DateTime.TryParse(value["message"]["replyTo"]["datetime"].Value<object>().ToString(), out datetime))
+                                        {
+                                            message.replyTo.datetime = Hepler.DateTimeToUnixTimestamp(datetime.ToLocalTime());
+                                        }
+                                        else
+                                        {
+                                            message.replyTo.datetime = value["message"]["replyTo"]["datetime"].Value<long>();
+                                        }
                                     }
                                 }
                                 if (value["preview"] != null)

@@ -45,7 +45,7 @@ namespace SiMed.ChatMessengers.Umnico.GUI
                 //}
                 if (localOptions.m_Manager!=null)
                 {
-                    cmbManagers.SelectedItem = cmbManagers.Items.Cast<Manager>().First(x => x.id == localOptions.m_Manager.id);
+                    cmbManagers.SelectedItem = cmbManagers.Items.Cast<Manager>().FirstOrDefault(x => x.id == localOptions.m_Manager.id);
                 }
                 else
                 {
